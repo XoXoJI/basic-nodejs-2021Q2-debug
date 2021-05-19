@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-                                //database username   password
+const Sequelize = require("sequelize");
+
 const sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
@@ -20,4 +20,4 @@ sequelize.authenticate().then(
     function fail(err) {
         console.log(`Error: ${err}`);
     }
-)
+);
