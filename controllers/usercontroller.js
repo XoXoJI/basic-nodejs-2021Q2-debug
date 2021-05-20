@@ -5,10 +5,15 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user")(require("../db"), require("sequelize"));
 
 router.post("/signup", (req, res) => {
+    if (!req.body.user) {
+        res.status(500).send('empty data');
+        return;
+    }
+
     User.create({
         full_name: req.body.user.full_name,
         username: req.body.user.username,
-        passwordhash: bcrypt.hashSync(req.body.user.password, 10),
+        passwordHash: bcrypt.hashSync(req.body.user.password, 10),
         email: req.body.user.email,
     }).then(
         function signupSuccess(user) {
