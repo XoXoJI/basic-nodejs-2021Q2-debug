@@ -35,6 +35,10 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
+    if (!req.body.game || !req.body.user) {
+        res.status(500).send('Error data');
+    }
+
     Game.create({
         title: req.body.game.title,
         owner_id: req.body.user.id,
