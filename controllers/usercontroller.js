@@ -20,6 +20,7 @@ router.post("/signup", (req, res) => {
             let token = jwt.sign({ id: user.id }, "lets_play_sum_games_man", {
                 expiresIn: 60 * 60 * 24,
             });
+
             res.status(200).json({
                 user: user,
                 token: token,
@@ -41,11 +42,12 @@ router.post("/signin", (req, res) => {
                     user.passwordHash,
                     function (err, matches) {
                         if (matches) {
-                            var token = jwt.sign(
+                            const token = jwt.sign(
                                 { id: user.id },
                                 "lets_play_sum_games_man",
                                 { expiresIn: 60 * 60 * 24 }
                             );
+
                             res.json({
                                 user: user,
                                 message: "Successfully authenticated.",
